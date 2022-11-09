@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:searchHandlers="clr-namespace:Assignment2.search"
+             xmlns:viewModels="clr-namespace:Assignment2.ViewModel"
+       xmlns:models="clr-namespace:Assignment2.Model"
+  xmlns:views="clr-namespace:Assignment2.Views"
+
+             x:Class="Assignment2.MainPage">
+    <Shell.SearchHandler>
+    <searchHandlers:HolidaysSeachHandlert 
+            Placeholder="Search Name"
+            ShowsResults="True"
+            QueryIcon="search"
+            NavigationType="{x:Type views:HolidayDetailView}"
+            ClearIcon="clear"
+            holidays="{x:Static viewModels:HolidayListViewModel.holidays}">
+            <searchHandlers:HolidaysSeachHandlert.ItemTemplate>
+                <DataTemplate x:DataType="models:Holiday">
+                    <Grid Margin="5" RowDefinitions="Auto" ColumnDefinitions="40,Auto">
+                        <Image Grid.Row="0" Grid.Column="0" Source="user" HeightRequest="35" WidthRequest="35" />
+                        <Label Grid.Row="0" Grid.Column="1" Text="{Binding Name}" FontSize="18" HorizontalTextAlignment="Center" VerticalTextAlignment="Center"/>
+                    </Grid>
+                </DataTemplate>
+            </searchHandlers:HolidaysSeachHandlert.ItemTemplate>
+        </searchHandlers:HolidaysSeachHandlert>
+    </Shell.SearchHandler>
+    <VerticalStackLayout VerticalOptions="Center" Padding="10">
+        <Label 
+            Text="Shell Search Handler Demo" FontSize="20"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+    </VerticalStackLayout>
+
+</ContentPage>
+
